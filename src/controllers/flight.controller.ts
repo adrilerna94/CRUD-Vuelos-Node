@@ -8,7 +8,7 @@ import { FlightService } from '../services/flight.service';
 import { httpStatus } from '../config/httpStatusCodes';
 // import { Http2ServerResponse } from 'http2';
 
-export class MovieController {
+export class FlightController {
   private flightService: FlightService;
 
   constructor() {

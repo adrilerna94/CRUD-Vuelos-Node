@@ -10,7 +10,7 @@ const flightController = new FlightController();
 export const flightRouter = Router();
 
 flightRouter.get('/:id', validate(FlightValidator.flightIdSchema, ValidationSource.PARAMS), flightController.getById);
-flightRouter.get('/', validate(FlightValidator.flightSchema, ValidationSource.QUERY), flightController.getAll);
+flightRouter.get('/', flightController.getAll);
 flightRouter.post('/', validate(FlightValidator.flightSchema, ValidationSource.BODY), flightController.create);
 flightRouter.put('/:id', validate(FlightValidator.flightIdSchema, ValidationSource.PARAMS), validate(FlightValidator.flightSchema, ValidationSource.BODY), flightController.update);
 flightRouter.delete('/:id', validate(FlightValidator.flightIdSchema, ValidationSource.PARAMS), flightController.delete);
