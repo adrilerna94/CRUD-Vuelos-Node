@@ -6,8 +6,8 @@ import Joi from 'joi';
 export class FlightValidator {
   private static id = Joi.string().hex().length(24);
 
-  static movieIdSchema = Joi.object({ id: FlightValidator.id.required() });
-  static movieSchema = Joi.object({
+  static flightIdSchema = Joi.object({ id: FlightValidator.id.required() });
+  static flightSchema = Joi.object({
     aeropuertoOrigen: Joi.string()
         .pattern(/^[A-Za-z\s]+$/)
         .max(10)

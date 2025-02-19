@@ -3,7 +3,7 @@
 
 import express, { Router } from 'express';
 import { errorMiddleware } from '../middlewares/error.middleware';
-import { movieRouter } from './movie.routes';
+import { movieRouter } from './flight.routes';
 
 export const baseRouter = Router();
 
