@@ -3,12 +3,12 @@
 
 import express, { Router } from 'express';
 import { errorMiddleware } from '../middlewares/error.middleware';
-import { movieRouter } from './flight.routes';
+import { flightRouter } from './flight.routes';
 
 export const baseRouter = Router();
 
 baseRouter.use(express.json());
 
-baseRouter.use('/movies', movieRouter);
+baseRouter.use('/flights', flightRouter);
 
 baseRouter.use(errorMiddleware);
