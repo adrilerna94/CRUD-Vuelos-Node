@@ -2,7 +2,7 @@
 // Can be extended by specific repositories like user.repository.ts.
 
 import { Model, ProjectionFields } from 'mongoose';
-import { IMovie } from '../types/movie.interface';
+import { IFlight } from '../types/flight.interface';
 
 export class BaseRepository<Document> {
   private model: Model<Document>;
@@ -11,6 +11,10 @@ export class BaseRepository<Document> {
   constructor(model: Model<Document>) {
     this.model = model;
     this.defaultProjection = { __v: 0 };
+  }
+
+  getAll() {
+    return this.model.find({}, this.defaultProjection);
   }
 
   getById(id: string, projection?: ProjectionFields<Document>) {
@@ -26,11 +30,11 @@ export class BaseRepository<Document> {
     const projectionFields = { ...projection, ...this.defaultProjection };
     return this.model.find(filters, projectionFields, options || {});
   }
-  create = async (movieData: Partial<IMovie>) => {
+  create = async (movieData: Partial<IFlight>) => {
     const newMovie = new this.model(movieData);
     return await newMovie.save();
   }
-  update = async (id: string, newMovie: Partial<IMovie>) => {
+  update = async (id: string, newMovie: Partial<IFlight>) => {
     const filter = {_id: id}; // filtramos por el ID
     /*
       📌 function findOneAndUpdate(filter, update, options) {} 📌
