@@ -8,19 +8,19 @@ export class FlightValidator {
 
   static flightIdSchema = Joi.object({ id: FlightValidator.id.required() });
   static flightSchema = Joi.object({
-    aeropuertoOrigen: Joi.string()
+    aeropuerto_origen: Joi.string()
         .pattern(/^[A-Za-z\s]+$/)
         .max(10)
         .required(),
 
-    aeropuertoDestino: Joi.string()
+    aeropuerto_destino: Joi.string()
         .pattern(/^[A-Za-z\s]+$/)
         .max(10)
         .required(),
 
-    fechaSalida: Joi.date().required(),
+    fecha_salida: Joi.date().required(),
 
-    fechaLlegada: Joi.date().required(),
+    fecha_llegada: Joi.date().required(),
 
     precio: Joi.number()
         .min(0)
@@ -28,7 +28,7 @@ export class FlightValidator {
         .precision(2)
         .required(),
 
-    nombrePasajero: Joi.string()
+    nombre_pasajero: Joi.string()
         .pattern(/^[A-Za-z\s]+$/)
         .max(300)
         .required(),

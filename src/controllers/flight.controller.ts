@@ -19,7 +19,7 @@ export class FlightController {
     try {
       const flights = await this.flightService.getAll();
       const response = {
-        message: 'Movies fetched successfully',
+        message: 'Fligths fetched successfully',
         flights
       };
       res.send(response);
@@ -46,7 +46,7 @@ export class FlightController {
     try {
       const newFlight = await this.flightService.createFlight(req.body);
       const response = {
-        message: 'Movie created successfully',
+        message: 'Flight created successfully',
         newFlight
       };
       res.status(201).json(response);

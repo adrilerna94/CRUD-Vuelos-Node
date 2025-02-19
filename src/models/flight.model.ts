@@ -22,4 +22,14 @@ const flightSchema = new mongoose.Schema({
 // forma segun convencionesf
 const FlightModel: Model<IFlightModel> = mongoose.model<IFlightModel>('Flight', flightSchema);
 
+// default ➡️ dbcollection flights
+
+/*
+
+const FlightModel: Model<IFlightModel> = mongoose.model<IFlightModel>('Flight', flightSchema, 'vuelos');
+
+
+
+*/
+
 export { FlightModel };
