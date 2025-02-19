@@ -21,20 +21,11 @@ export class BaseRepository<Document> {
     const projectionFields = { ...projection, ...this.defaultProjection };
     return this.model.findById(id, projectionFields);
   }
-
-  find<Doctype>(
-    filters: Record<string, unknown>,
-    projection?: ProjectionFields<Doctype>,
-    options?: Record<string, unknown>,
-  ) {
-    const projectionFields = { ...projection, ...this.defaultProjection };
-    return this.model.find(filters, projectionFields, options || {});
+  create = async (flightData: IFlight) => {
+    const newFlight = new this.model(flightData);
+    return await newFlight.save();
   }
-  create = async (movieData: Partial<IFlight>) => {
-    const newMovie = new this.model(movieData);
-    return await newMovie.save();
-  }
-  update = async (id: string, newMovie: Partial<IFlight>) => {
+  update = async (id: string, newFlight: IFlight) => {
     const filter = {_id: id}; // filtramos por el ID
     /*
       📌 function findOneAndUpdate(filter, update, options) {} 📌
@@ -42,7 +33,7 @@ export class BaseRepository<Document> {
       ⚡{new:true} ➡️ especificamos que retorne el documento después update sea aplicado.
        ❗default new:false ➡️ return before update applied.
     */
-    return this.model.findOneAndUpdate(filter, newMovie , {new:true});
+    return this.model.findOneAndUpdate(filter, newFlight , {new:true});
   }
   delete = async (id: string) => {
     const filter = {_id: id};

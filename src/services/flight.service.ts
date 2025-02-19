@@ -24,35 +24,19 @@ export class FlightService {
   };
 
 
-  createflight = async (flight: Partial<IFlight>) => {
-    const filteredflight = {
-      title: flight.title,
-      plot: flight.plot,
-      directors: flight.directors,
-      released: flight.released
-    }
-    return await this.flightRepository.create(filteredflight);
+  createFlight = async (flight: IFlight) => {
+    return await this.flightRepository.create(flight);
   };
-  updateflight = async (id: string, data: Partial<IFlight>) => {
+  
+  updateFlight = async (id: string, data: IFlight) => {
     const flighttoUpdate = await this.flightRepository.getById(id);
     if (!flighttoUpdate) {
       throw new AppError(`flight with ID ${id} NOT FOUND`, httpStatus.NOT_FOUND);
     }
-    // Lista de palabras prohibidas
-    const prohibited = ['porn', 'sex'];
-    // validar si plot está en data y no es undefined
-    if (data.plot) {
-      // Normalizar datos ➡️ minúsculas y quitar espacios inicio y final.
-      const normalizedPlot = data.plot.toLowerCase().trim();
-      // Filtrar palabras prohibidas
-      const prohibitedWords = prohibited.filter(word => normalizedPlot.includes(word));
-      if (prohibitedWords.length > 0){
-        throw new AppError(`flight can't contain banned words: ${prohibitedWords.join(', ')}`, httpStatus.BAD_REQUEST);
-      }
-    }
     return this.flightRepository.update(id, data);
   }
-  deleteflight = async (id: string) => {
+
+  deleteFlight = async (id: string) => {
     const flightToDelete = await this.flightRepository.getById(id);
     if(!flightToDelete) {
       throw new AppError(`flight with ID ${id} NOT FOUND`, httpStatus.NOT_FOUND);

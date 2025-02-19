@@ -20,27 +20,12 @@ export class FlightRepository {
     return await this.baseRepository.getById(id, this.defaultProjection);
   };
 
-  find = (
-    filters: Record<string, unknown> = {},
-    pagination: { skip: number; limit: number } = { skip: 0, limit: 0 },
-  ) => {
-    const options = { ...pagination };
-    return this.baseRepository.find<IFlightModel>(filters, this.defaultProjection, options);
+  create = async (flight: IFlight) => {
+    return await this.baseRepository.create(flight);
   };
-  create = async (movie: Partial<IFlight>) => {
-    const filteredMovie: Partial<IFlight> = {
-      title: movie.title ?? "Unknown Title",
-      plot: movie.plot ?? "No plot available",
-      genres: movie.genres ?? [],
-      year: movie.year ?? new Date().getFullYear(),
-      directors: movie.directors ?? [],
-      released: movie.released ?? new Date(),
-    };
 
-    return await this.baseRepository.create(filteredMovie);
-  };
-  update = async (id: string, movie: Partial<IMovie>) => {
-    return await this.baseRepository.update(id, movie);
+  update = async (id: string, flight: IFlight) => {
+    return await this.baseRepository.update(id, flight);
   }
   delete = async (id: string) => {
     return await this.baseRepository.delete(id);

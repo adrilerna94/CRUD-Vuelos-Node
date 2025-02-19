@@ -2,7 +2,7 @@
 // Maps HTTP methods and endpoints to the corresponding controller methods.
 
 import { Router } from 'express';
-import { MovieController } from '../controllers/movie.controller';
+import { MovieController } from '../controllers/flight.controller';
 import { MovieValidator } from '../validators/movie.validator';
 import { validate, ValidationSource } from '../middlewares/validate.middleware';
 

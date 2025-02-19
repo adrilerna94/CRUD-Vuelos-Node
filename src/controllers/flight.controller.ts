@@ -44,10 +44,10 @@ export class MovieController {
 
   create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const newMovie = await this.FlightService.createMovie(req.body);
+      const newFlight = await this.flightService.createFlight(req.body);
       const response = {
         message: 'Movie created successfully',
-        data: newMovie
+        newFlight
       };
       res.status(201).json(response);
     } catch (error) {
@@ -58,12 +58,11 @@ export class MovieController {
   update = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      const newMovie = req.body;
-      const movie = await this.FlightService.updateMovie(id, newMovie);
+      const newFlight = req.body;
+      const flight = await this.flightService.updateFlight(id, newFlight);
       const response = {
-        message: 'Movie Updated successfully',
-        updates: newMovie,
-        movie
+        message: 'Flight Updated successfully',
+        flight
       };
       res.send(response)
     } catch (error) {
@@ -73,12 +72,7 @@ export class MovieController {
   delete = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      await this.FlightService.deleteMovie(id);
-      // const response = {
-      //   message: 'Movie Deleted successfully',
-      //   movieToDelete
-      // };
-      // res.send(response)
+      await this.flightService.deleteFlight(id);
       res.status(httpStatus.NO_CONTENT).end();
     } catch (error) {
       next(error);
